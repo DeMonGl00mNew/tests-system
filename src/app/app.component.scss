@@ -1,0 +1,72 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+.container {
+    display: grid;
+    grid-template-areas: 
+      "header header header"
+      "user-info user-info user-info"
+      "sidebar main-content main-content";
+    grid-template-columns: 1fr 2fr 2fr;
+    grid-template-rows: 1fr 0.1fr 10fr;
+    height: 100vh;
+}
+
+.header {
+    grid-area: header;
+    background-color: #4CAF50;
+    color: rgb(255, 255, 255);
+    padding: 20px;
+    text-align: center;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px; 
+}
+
+.user-info {
+    grid-area: user-info;
+    background-color: #4CAF50;
+    color: rgb(255, 255, 255);
+    justify-self: stretch;
+    text-align: end;
+    position: relative; 
+
+
+}
+
+.user-info::after {
+    content: '';
+    display: block;
+    height: 10px; 
+    background-color: #4CAF50; 
+    position: absolute;
+    bottom: -10px; 
+    left: 0;
+    right: 0;
+    border-bottom-left-radius: 10px; 
+    border-bottom-right-radius: 10px;
+}
+
+.button-exit {
+    margin: 10px; 
+    border-radius: 5px; 
+    padding: 5px 10px; 
+}
+
+.sidebar {
+    grid-area: sidebar;
+    background-color: #f4f4f4;
+    padding: 20px;
+    border-radius: 10px;
+
+}
+
+.main-content {
+    grid-area: main-content;
+    padding: 20px;
+    border-radius: 10px; 
+}
+
+.header, .sidebar, .main-content, .user-info {
+    border: 0px solid aqua; 
+}

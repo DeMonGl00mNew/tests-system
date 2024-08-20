@@ -1,0 +1,59 @@
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+}
+
+img.quest-image {
+  display: block;
+  max-width: 200px; 
+  height: auto; 
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+.answers {
+  list-style-position: inside;
+  padding-left: -20px;
+}
+
+.answer {
+    margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+.what {
+
+  margin-bottom: 2rem;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 1em;
+    font-family: Arial, sans-serif;
+}
+
+thead {
+    background-color: #4CAF50;
+    color: white;
+}
+
+th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #dddddd;
+}
+
+tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+h3 {
+    color: #ff0000; /* Цвет для сообщения, если нет результатов */
+    text-align: center;
+}

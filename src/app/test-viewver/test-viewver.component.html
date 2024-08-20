@@ -1,0 +1,59 @@
+@for(curQuestion of questions; track $index; let indexName = $index){
+    <div class="what" > 
+        <span>{{ curQuestion.question }}</span>
+    @if(curQuestion.pathImage) {
+    <img
+      src="{{ curQuestion.pathImage }}"
+      alt="image not found"
+      class="quest-image"
+    />
+    }
+    <ol class="answers">
+      @for (answer of curQuestion.answers; track $index) {
+      <li class="answer">
+        <input
+          type="radio"
+          (change)="addUserAnswer(curQuestion, answer)"
+          name="{{ indexName }}"
+        />
+
+        <label>{{ answer }}</label>
+      </li>
+      }
+    </ol>
+</div>
+}
+  <div [attr.data-count]="1" appAutoIncrement="data-count">Значение:</div>
+  <button (click)="checkSolution()">Проверка результатов</button>
+
+  <h3
+    [ngStyle]="{
+      'margin-left': '20px',
+      display: isVisible ? 'inline' : 'none'
+    }"
+  >
+    Ваша оценка: {{ calcResult }}
+  </h3>
+
+  <div style="margin-top: 20px">
+    <button (click)="ViewResults(id_test)">Вывести все результаты</button>
+  </div>
+
+  @if(testResult.length!=0){ 
+     
+    <table>
+    <thead>
+      <tr>
+        <th>Название теста</th>
+        <th>Оценка</th>
+        <th>Дата завершения</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let test of testResult">
+        <td>{{ test.title }}</td>
+        <td>{{ test.score }}</td>
+        <td>{{ test.completed_at }}</td>
+      </tr>
+    </tbody>
+  </table>}@else {<h3>{{resultMessage}}</h3>}
