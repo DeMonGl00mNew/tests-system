@@ -12,7 +12,7 @@ import { RequestsService } from '../services/requests.service';
 })
 export class HomePageComponent implements OnInit {
   isLogined: boolean = false; // Переменная для отслеживания статуса входа пользователя
-  testTiles: TestTile[]=[]; 
+  testTiles: TestTile[] = [];
 
   constructor(private authService: RequestsService) {} // Инъекция сервиса для работы с данными пользователя
 
@@ -23,20 +23,19 @@ export class HomePageComponent implements OnInit {
       this.isLogined = data.id_user != 0 ? true : false; // Если id_user не равен 0, значит пользователь вошел
     });
 
-    this.getDataAboutTests()
+    this.getDataAboutTests();
   }
-
+  // Метод для получения данных о тестах
   public getDataAboutTests(): void {
     this.authService.getDataAboutTests().subscribe({
       next: (response) => {
-        this.testTiles=response
+        this.testTiles = response; // Сохраняем полученные данные о тестах в массив
       },
       error: (error) => {
-        console.error('Ошибка при получении данных о тестах:', error);
+        console.error('Ошибка при получении данных о тестах:', error); // Логируем ошибку в консоль
       },
     });
   }
-
 }
 
 // Интерфейс для описания структуры теста
