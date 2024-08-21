@@ -26,6 +26,9 @@ export class RequestsService {
   // URL для API получения содержания теста
   private apiUrlgetTest: string =
     'https://eisk1848.ru/system-tests-scripts/get-test.php';
+  // URL для API получения данных о всех тестах
+  private apiUrlgetDataTests: string =
+    'https://eisk1848.ru/system-tests-scripts/get-data-about-tests.php';
 
   constructor(
     private http: HttpClient,
@@ -102,7 +105,9 @@ export class RequestsService {
       id_test: id_test,
     });
   }
-
+getDataAboutTests():Observable<any>{
+    return this.http.get (this.apiUrlgetDataTests);
+}
   // Метод для выхода пользователя
   logout(): void {
     this.userData = this.setEmptyUserData(); // Сбрасываем данные пользователя

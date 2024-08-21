@@ -12,6 +12,7 @@ import { RequestsService } from '../services/requests.service';
 })
 export class HomePageComponent implements OnInit {
   isLogined: boolean = false; // Переменная для отслеживания статуса входа пользователя
+  testTiles: TestTile[]=[]; 
 
   constructor(private authService: RequestsService) {} // Инъекция сервиса для работы с данными пользователя
 
@@ -21,21 +22,21 @@ export class HomePageComponent implements OnInit {
       // Проверяем, вошел ли пользователь в систему
       this.isLogined = data.id_user != 0 ? true : false; // Если id_user не равен 0, значит пользователь вошел
     });
+
+    this.getDataAboutTests()
   }
 
-  // Массив тестов с их данными
-  testTiles: TestTile[] = [
-    {
-      id_test: 2, // Идентификатор теста
-      image: 'images/infoscience/pictogram.jpg', // Путь к изображению теста
-      title: 'Тест на знание информатики', // Заголовок теста
-    },
-    {
-      id_test: 3, // Идентификатор теста
-      image: 'images/database/pictogram.jpg', // Путь к изображению теста
-      title: 'Тест на знание баз данных', // Заголовок теста
-    },
-  ];
+  public getDataAboutTests(): void {
+    this.authService.getDataAboutTests().subscribe({
+      next: (response) => {
+        this.testTiles=response
+      },
+      error: (error) => {
+        console.error('Ошибка при получении данных о тестах:', error);
+      },
+    });
+  }
+
 }
 
 // Интерфейс для описания структуры теста
