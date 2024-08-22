@@ -136,7 +136,7 @@ export class TestViewverComponent implements OnInit {
 }
 
 // Интерфейс для вопроса
-interface Question {
+export interface Question {
   question: string; // Вопрос
   answers: string[]; // Ответы на вопрос
   rightAnswer: string; // Правильный ответ
