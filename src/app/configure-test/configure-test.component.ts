@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from "@angular/forms";
+import { FormsModule, NgForm } from "@angular/forms";
 interface Question {
   text: string;
   answers: string[];
@@ -15,4 +15,21 @@ interface Question {
 })  
 export class ConfigureTestComponent {
  
+
+
+  answers: string[] = ['']; // начальное значение для первого варианта ответа
+
+  addAnswer() {
+    this.answers.push(''); // добавляем пустую строку для нового варианта
+  }
+
+  removeAnswer(index: number) {
+    this.answers.splice(index, 1); // удаляем вариант ответа по индексу
+  }
+
+
+
+  onAnswerChange():void{}
+
+  submit(form:any):void{}
 }
