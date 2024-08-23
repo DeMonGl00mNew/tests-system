@@ -38,7 +38,7 @@ export class HomePageComponent implements OnInit {
   }
 }
 
-// Интерфейс для описания структуры теста
+// Интерфейс для описания части структуры теста
 interface TestTile {
   image: string; // Путь к изображению
   title: string; // Заголовок теста

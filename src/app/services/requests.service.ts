@@ -29,6 +29,8 @@ export class RequestsService {
   // URL для API получения данных о всех тестах
   private apiUrlgetDataTests: string =
     'https://eisk1848.ru/system-tests-scripts/get-data-about-tests.php';
+  private apiUrlsetTest: string =
+    'https://eisk1848.ru/system-tests-scripts/set-test.php';
 
   constructor(
     private http: HttpClient,
@@ -57,6 +59,11 @@ export class RequestsService {
   // Метод для регистрации пользователя
   register(userData?: userData): Observable<any> {
     return this.http.post(this.apiUrlRegistration, userData);
+  }
+
+  // Метод для регистрации пользователя
+  setTest(testData?: Test): Observable<any> {
+    return this.http.post(this.apiUrlsetTest, testData);
   }
 
   // Метод для сохранения данных пользователя в куки
@@ -138,6 +145,17 @@ export interface scoreData {
   completed_at?: string;
 }
 
+// Интерфейс для описания структуры теста
+export interface Test {
+  id_test?: number; 
+  title: string; 
+  id_creator:number;
+  duration:number;
+  image:string; 
+  content:string;
+}
+
+
 // Интерфейс для данных пользователя
 interface userData {
   id_user: number;
@@ -147,3 +165,4 @@ interface userData {
   grade: string;
   role: string;
 }
+
