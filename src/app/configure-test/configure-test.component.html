@@ -1,49 +1,33 @@
-<h4>Добавлено вопросов в новый тест {{ questionIndex }}</h4>
+<div class="test-container">
+  <h4 class="count">Добавлено вопросов в новый тест {{ questionIndex }}</h4>
+  <h3 class="test-title">Тест: {{ titleTest }}</h3>
 
+  @if(questionIndex===0){
+      <label>Название теста: </label>
+      <input name="test_name" [(ngModel)]="titleTest" />
+  }
 
-<h3>Тест: {{ titleTest }}</h3>
+  <form #myForm="ngForm" novalidate class="test-form">
+      <div class="form-group">
+          <label>Вопрос: </label>
+          <input name="question" ngModel required />
+      </div>
 
-@if(questionIndex===0){
-    <label>Название теста: </label>
-    <input name="test_name" [(ngModel)]="titleTest" />
-    }
-<form #myForm="ngForm" novalidate>
-  <div class="form-container">
-    <p class="form-group">
-      <label>Вопрос: </label>
-      <input name="question" ngModel required />
-    </p>
+      <div class="answers" *ngFor="let answer of answers; let i = index">
+          <label>Ответ {{ i + 1 }}: </label>
+          <input name="answer{{ i }}" ngModel required />
+          <input type="radio" name="right_answer" [value]="i" [(ngModel)]="right_answer" ngModel required />
+          <button type="button" (click)="removeAnswer(i)">Удалить</button>
+      </div>
 
-    <div *ngFor="let answer of answers; let i = index">
-      <label>Ответ {{ i + 1 }}: </label>
-      <input name="answer{{ i }}" ngModel required />
-      <input
-        type="radio"
-        name="right_answer"
-        [value]="i"
-        [(ngModel)]="right_answer"
-        ngModel
-        required
-      />
-      <button type="button" (click)="removeAnswer(i)">Удалить</button>
-    </div>
+      <button type="button" (click)="addAnswer()">Добавить вариант ответа</button>
 
-    <button type="button" (click)="addAnswer()">Добавить вариант ответа</button>
+      <div class="image-upload form-group">
+          <label>Добавить изображение: </label>
+          <input type="file" name="image_path" ngModel />
+      </div>
 
-    <p class="form-group">
-      <label>Добавить изображение: </label>
-      <input type="file" name="image_path" ngModel />
-    </p>
-    <ol class="answers"></ol>
-  </div>
-  <button [disabled]="myForm.invalid" (click)="addQuestion(myForm)">
-    Добавить вопрос
-  </button>
-  <button
-    [disabled]="questionsConfigure.length === 0"
-    type="button"
-    (click)="SendTest()"
-  >
-    Зарегистрировать тест
-  </button>
-</form>
+      <button [disabled]="myForm.invalid" (click)="addQuestion(myForm)">Добавить вопрос</button>
+      <button [disabled]="questionsConfigure.length === 0" type="button" (click)="SendTest()">Зарегистрировать тест</button>
+  </form>
+</div>
